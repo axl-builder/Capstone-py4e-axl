@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- 1) Tus datos primero: define window.gline -->
+    <script src="capstone.js"></script>
+
+    <!-- 2) Loader de Google Charts -->
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+      google.charts.load('current', {packages:['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        // 3) Convertís tu matriz global a DataTable
+        var data = google.visualization.arrayToDataTable(window.gline);
+
+        var options = { title: 'Mi gráfico', /* isStacked:true, etc. */ };
+
+        // Cambiá el constructor según el tipo de gráfico:
+        // LineChart, AreaChart, ColumnChart, BarChart, ComboChart...
+        var chart = new google.visualization.AreaChart(
+          document.getElementById('chart_div')
+        );
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width:100%; height:500px;"></div>
+  </body>
+</html>
